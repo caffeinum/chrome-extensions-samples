@@ -80,16 +80,16 @@ if Tkinter:
     def processMessages(self):
       while not self.queue.empty():
         message = self.queue.get_nowait()
-        if message == None:
+        if message is None:
           self.quit()
           return
-        self.log("Received %s" % message)
+        self.log(f"Received {message}")
 
       self.after(100, self.processMessages)
 
     def onSend(self):
       text = '{"text": "' + self.messageContent.get() + '"}'
-      self.log('Sending %s' % text)
+      self.log(f'Sending {text}')
       try:
         send_message(text)
       except IOError:
